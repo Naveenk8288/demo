@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheBitForge | Forging Digital Ideas into Intelligent Solutions</title>
+  <meta name="description" content="TheBitForge is a futuristic tech agency specializing in Website Development, WordPress, Google & Meta Ads, Graphics Designing, AI/ML Solutions, and AI Agents & Automations.">
+  <meta name="keywords" content="TheBitForge, Web Development, WordPress, Google Ads, Meta Ads, Graphics Design, AI ML Solutions, AI Agents, n8n Automations">
+  <meta property="og:title" content="TheBitForge | Next-Gen Digital & AI Engineering Agency">
+  <meta property="og:description" content="We forge digital ideas into intelligent solutions — Web, WordPress, Paid Ads, Design, AI/ML & Autonomous AI Agents.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts: Orbitron (Futuristic Headings) & Inter (Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Desktop Glowing Cursor Trail -->
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       1. STICKY TRANSPARENT GLASS NAVBAR
+       ======================================================================== -->
+  <header id="navbar" class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="nav-logo" aria-label="TheBitForge Home">
+        <span class="brand-wordmark">TheBitForge</span>
+      </a>
+
+      <nav id="nav-links" class="nav-links" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#contact" class="btn btn-primary nav-cta">Get a Free Quote</a>
+      </nav>
+
+      <button id="hamburger" class="hamburger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         2. HERO SECTION — HUB-AND-SPOKE NEON ARCHITECTURE
+         ====================================================================== -->
+    <section id="home" class="hero">
+      <!-- Animated Particle & Binary Code Canvas -->
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Dual Blue & Orange Ambient Glow Orbs -->
+      <div class="hero-glow-left" aria-hidden="true"></div>
+      <div class="hero-glow-right" aria-hidden="true"></div>
+
+      <!-- Curved Neon Wave Lines Across Hero Background -->
+      <svg class="hero-waves-svg" viewBox="0 0 1440 800" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(34,211,238,0)" />
+            <stop offset="35%" stop-color="rgba(34,211,238,0.45)" />
+            <stop offset="70%" stop-color="rgba(167,139,250,0.35)" />
+            <stop offset="100%" stop-color="rgba(255,122,24,0)" />
+          </linearGradient>
+          <linearGradient id="waveOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(45,140,255,0)" />
+            <stop offset="30%" stop-color="rgba(45,140,255,0.35)" />
+            <stop offset="68%" stop-color="rgba(255,122,24,0.45)" />
+            <stop offset="100%" stop-color="rgba(255,122,24,0)" />
+          </linearGradient>
+        </defs>
+        <path d="M-100,260 C320,120 620,440 1540,200" fill="none" stroke="url(#waveCyan)" stroke-width="2" />
+        <path d="M-100,540 C420,660 880,300 1540,520" fill="none" stroke="url(#waveOrange)" stroke-width="2" />
+      </svg>
+
+      <div class="container">
+        <!-- Hub-and-Spoke Stage -->
+        <div id="hub-stage" class="hub-stage">
+          <!-- Dynamic SVG Spokes Connecting Center to 6 Service Nodes -->
+          <svg id="hub-connectors-svg" class="hub-connectors-svg" aria-hidden="true"></svg>
+
+          <!-- Center Logo Hub -->
+          <div id="hub-center" class="hub-center">
+            <h1 class="hub-title brand-wordmark">TheBitForge</h1>
+            <span class="hub-subtitle-badge">Digital &amp; AI Engineering Hub</span>
+          </div>
+
+          <!-- Spoke 1: Website Development (Top Left) -->
+          <div class="hub-node node-top-left" data-node-id="1" data-accent="blue" role="button" tabindex="0" aria-label="Website Development">
+            <div class="hub-node-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="18" rx="3" />
+                <line x1="2" y1="8" x2="22" y2="8" />
+                <polyline points="9 13 6 15.5 9 18" />
+                <polyline points="15 13 18 15.5 15 18" />
+                <line x1="13" y1="12" x2="11" y2="19" />
+              </svg>
+            </div>
+            <span class="hub-node-label">Website Development</span>
+          </div>
+
+          <!-- Spoke 2: WordPress Development (Top Center) -->
+          <div class="hub-node node-top-center" data-node-id="2" data-accent="blue" role="button" tabindex="0" aria-label="WordPress Development">
+            <div class="hub-node-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M4.5 9.5L8.5 19.5L12 11.5L15.5 19.5L19.5 9.5" />
+                <circle cx="12" cy="12" r="7.5" stroke-dasharray="2 3" />
+              </svg>
+            </div>
+            <span class="hub-node-label">WordPress Development</span>
+          </div>
+
+          <!-- Spoke 3: Google & Meta Ads (Top Right) -->
+          <div class="hub-node node-top-right" data-node-id="3" data-accent="orange" role="button" tabindex="0" aria-label="Google and Meta Ads">
+            <div class="hub-node-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 12c-2-2.8-4.5-4.5-7-4.5a4.5 4.5 0 0 0 0 9c2.5 0 5-1.7 7-4.5z" />
+                <path d="M12 12c2 2.8 4.5 4.5 7 4.5a4.5 4.5 0 0 0 0-9c-2.5 0-5 1.7-7 4.5z" />
+              </svg>
+            </div>
+            <span class="hub-node-label">Google &amp; Meta Ads</span>
+          </div>
+
+          <!-- Spoke 4: Graphics Designing (Bottom Left) -->
+          <div class="hub-node node-bottom-left" data-node-id="4" data-accent="blue" role="button" tabindex="0" aria-label="Graphics Designing">
+            <div class="hub-node-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                <path d="M2 2l7.5 7.5" />
+                <circle cx="11" cy="11" r="2" />
+              </svg>
+            </div>
+            <span class="hub-node-label">Graphics Designing</span>
+          </div>
+
+          <!-- Spoke 5: AI / ML Solutions (Bottom Center) -->
+          <div class="hub-node node-bottom-center" data-node-id="5" data-accent="orange" role="button" tabindex="0" aria-label="AI and ML Solutions">
+            <div class="hub-node-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04z" />
+                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04z" />
+              </svg>
+            </div>
+            <span class="hub-node-label">AI / ML Solutions</span>
+          </div>
+
+          <!-- Spoke 6: AI Agents & Automations (Bottom Right) -->
+          <div class="hub-node node-bottom-right" data-node-id="6" data-accent="orange" role="button" tabindex="0" aria-label="AI Agents and Automations">
+            <div class="hub-node-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="8" width="18" height="12" rx="3" />
+                <path d="M12 2v6" />
+                <circle cx="12" cy="2" r="1.5" />
+                <circle cx="8.5" cy="13.5" r="1.5" />
+                <circle cx="15.5" cy="13.5" r="1.5" />
+                <line x1="9" y1="17.5" x2="15" y2="17.5" />
+              </svg>
+            </div>
+            <span class="hub-node-label">AI Agents &amp; Automations</span>
+          </div>
+        </div>
+
+        <!-- Hero Tagline & CTA Buttons -->
+        <div class="hero-bottom">
+          <p class="hero-tagline">
+            <strong>We forge digital ideas into intelligent solutions</strong> — uniting high-velocity web architecture, data-driven performance marketing, and autonomous AI systems.
+          </p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+            <a href="#services" class="btn btn-outline">View Our Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. TECH STACK SCROLLING MARQUEE STRIP
+         ====================================================================== -->
+    <div class="tech-marquee-section" aria-label="Technologies we use">
+      <div class="marquee-track">
+        <!-- Set 1 -->
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M6 9l4 9 2-5 2 5 4-9"/></svg>
+          <span>WordPress</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(90 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>React &amp; Next.js</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c-4 0-4 3-4 3v3h8V5s0-3-4-3z"/><path d="M12 22c4 0 4-3 4-3v-3H8v3s0 3 4 3z"/><rect x="4" y="8" width="16" height="8" rx="3"/></svg>
+          <span>Python</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 7 19 17 12 22 5 17 5 7 12 2"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>OpenAI &amp; LLMs</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><line x1="8.7" y1="10.7" x2="15.3" y2="7.3"/><line x1="8.7" y1="13.3" x2="15.3" y2="16.7"/></svg>
+          <span>n8n Workflows</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20l7-16 4 9 7 7H3z"/></svg>
+          <span>Google Ads</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c-2-2.8-4.5-4.5-7-4.5a4.5 4.5 0 0 0 0 9c2.5 0 5-1.7 7-4.5z"/><path d="M12 12c2 2.8 4.5 4.5 7 4.5a4.5 4.5 0 0 0 0-9c-2.5 0-5 1.7-7 4.5z"/></svg>
+          <span>Meta Ads</span>
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="6" height="6" rx="3"/><rect x="12" y="2" width="6" height="6" rx="3"/><rect x="6" y="8" width="6" height="6" rx="3"/><circle cx="15" cy="11" r="3"/><path d="M6 17a3 3 0 1 1 6 0v-3H6v3z"/></svg>
+          <span>Figma</span>
+        </div>
+
+        <!-- Set 2 (Duplicate for seamless infinite loop) -->
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M6 9l4 9 2-5 2 5 4-9"/></svg>
+          <span>WordPress</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(90 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>React &amp; Next.js</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c-4 0-4 3-4 3v3h8V5s0-3-4-3z"/><path d="M12 22c4 0 4-3 4-3v-3H8v3s0 3 4 3z"/><rect x="4" y="8" width="16" height="8" rx="3"/></svg>
+          <span>Python</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 7 19 17 12 22 5 17 5 7 12 2"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>OpenAI &amp; LLMs</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><line x1="8.7" y1="10.7" x2="15.3" y2="7.3"/><line x1="8.7" y1="13.3" x2="15.3" y2="16.7"/></svg>
+          <span>n8n Workflows</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20l7-16 4 9 7 7H3z"/></svg>
+          <span>Google Ads</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c-2-2.8-4.5-4.5-7-4.5a4.5 4.5 0 0 0 0 9c2.5 0 5-1.7 7-4.5z"/><path d="M12 12c2 2.8 4.5 4.5 7 4.5a4.5 4.5 0 0 0 0-9c-2.5 0-5 1.7-7 4.5z"/></svg>
+          <span>Meta Ads</span>
+        </div>
+        <div class="tech-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="6" height="6" rx="3"/><rect x="12" y="2" width="6" height="6" rx="3"/><rect x="6" y="8" width="6" height="6" rx="3"/><circle cx="15" cy="11" r="3"/><path d="M6 17a3 3 0 1 1 6 0v-3H6v3z"/></svg>
+          <span>Figma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         4. SERVICES SECTION (6 Detailed Glassmorphism Cards)
+         ====================================================================== -->
+    <section id="services" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">What We Forge</span>
+          <h2 class="section-title">Full-Spectrum Digital &amp; AI Capabilities</h2>
+          <p class="section-subtitle">Six specialized engineering pillars connected around a single mission: accelerating your growth with precision technology.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1 -->
+          <article class="glass-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="3"/><line x1="2" y1="8" x2="22" y2="8"/><polyline points="9 13 6 15.5 9 18"/><polyline points="15 13 18 15.5 15 18"/></svg>
+            </div>
+            <h3 class="service-title">Website Development</h3>
+            <p class="service-desc">Blazing-fast, custom web applications and marketing sites engineered for maximum conversion and scalability.</p>
+            <ul class="service-bullets">
+              <li>React, Next.js &amp; modern full-stack architecture</li>
+              <li>Sub-second page loads &amp; 99+ Core Web Vitals</li>
+              <li>API-first backends &amp; enterprise cloud security</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn more <span>→</span></a>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="glass-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M4.5 9.5L8.5 19.5L12 11.5L15.5 19.5L19.5 9.5"/></svg>
+            </div>
+            <h3 class="service-title">WordPress Development</h3>
+            <p class="service-desc">Bespoke WordPress &amp; WooCommerce ecosystems built without bloated themes for effortless publishing and speed.</p>
+            <ul class="service-bullets">
+              <li>Custom Gutenberg blocks &amp; headless WordPress</li>
+              <li>High-converting WooCommerce stores &amp; checkout</li>
+              <li>Technical SEO, hardening &amp; speed optimization</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn more <span>→</span></a>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="glass-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c-2-2.8-4.5-4.5-7-4.5a4.5 4.5 0 0 0 0 9c2.5 0 5-1.7 7-4.5z"/><path d="M12 12c2 2.8 4.5 4.5 7 4.5a4.5 4.5 0 0 0 0-9c-2.5 0-5 1.7-7 4.5z"/></svg>
+            </div>
+            <h3 class="service-title">Google &amp; Meta Ads</h3>
+            <p class="service-desc">Algorithmic paid acquisition campaigns that turn ad spend into predictable, measurable revenue growth.</p>
+            <ul class="service-bullets">
+              <li>Full-funnel Google Search, PMax &amp; YouTube Ads</li>
+              <li>High-ROAS Meta (Facebook &amp; Instagram) retargeting</li>
+              <li>Server-side CAPI tracking &amp; live ROAS dashboards</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn more <span>→</span></a>
+          </article>
+
+          <!-- Service 4 -->
+          <article class="glass-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
+            </div>
+            <h3 class="service-title">Graphics Designing</h3>
+            <p class="service-desc">Futuristic brand identities, UI/UX design systems, and scroll-stopping ad creatives that command attention.</p>
+            <ul class="service-bullets">
+              <li>Complete brand identity, logos &amp; style guides</li>
+              <li>Interactive Figma UI/UX prototypes &amp; design systems</li>
+              <li>High-CTR social media &amp; ad motion graphics</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn more <span>→</span></a>
+          </article>
+
+          <!-- Service 5 -->
+          <article class="glass-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04z"/></svg>
+            </div>
+            <h3 class="service-title">AI / ML Solutions</h3>
+            <p class="service-desc">Custom machine learning models, RAG knowledge bases, and predictive analytics tailored to your proprietary data.</p>
+            <ul class="service-bullets">
+              <li>Custom LLM fine-tuning &amp; vector RAG pipelines</li>
+              <li>Predictive demand, churn &amp; pricing models</li>
+              <li>Computer vision &amp; natural language processing</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn more <span>→</span></a>
+          </article>
+
+          <!-- Service 6 -->
+          <article class="glass-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 2v6"/><circle cx="12" cy="2" r="1.5"/><circle cx="8.5" cy="13.5" r="1.5"/><circle cx="15.5" cy="13.5" r="1.5"/><line x1="9" y1="17.5" x2="15" y2="17.5"/></svg>
+            </div>
+            <h3 class="service-title">AI Agents &amp; Automations</h3>
+            <p class="service-desc">24/7 autonomous AI agents and multi-app workflows that qualify leads, book calls, and eliminate manual busywork.</p>
+            <ul class="service-bullets">
+              <li>Voice &amp; chat AI agents for sales and support</li>
+              <li>End-to-end n8n, Make &amp; CRM workflow orchestration</li>
+              <li>Automated document parsing, invoicing &amp; outreach</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn more <span>→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. WHY CHOOSE US (Animated Counters)
+         ====================================================================== -->
+    <section id="about" class="stats-section reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Why Choose TheBitForge</span>
+          <h2 class="section-title">Proven Engineering Impact</h2>
+          <p class="section-subtitle">We combine agency speed with deep systems engineering to deliver measurable ROI.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" data-target="240" data-suffix="+">0+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="150" data-suffix="+">0+</div>
+            <div class="stat-label">Happy Global Clients</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="8" data-suffix="+">0+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="520" data-suffix="+">0+</div>
+            <div class="stat-label">AI Automations Built</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. PROCESS SECTION (4-Step Glowing Timeline)
+         ====================================================================== -->
+    <section id="process" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">How We Work</span>
+          <h2 class="section-title">The 4-Stage Forge Process</h2>
+          <p class="section-subtitle">Transparent, milestone-driven execution from initial blueprint to autonomous scale.</p>
+        </div>
+
+        <div class="process-timeline">
+          <div class="process-step">
+            <div class="step-badge">01</div>
+            <h3>Discover</h3>
+            <p>We audit your architecture, growth bottlenecks, and automation opportunities to define a high-ROI roadmap.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-badge">02</div>
+            <h3>Design</h3>
+            <p>Interactive Figma prototypes, conversion-focused user flows, and system blueprints crafted for clarity.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-badge">03</div>
+            <h3>Develop</h3>
+            <p>Clean, modular code, custom AI agent training, and full-funnel ad tracking built with agile weekly sprints.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-badge">04</div>
+            <h3>Deploy</h3>
+            <p>Zero-downtime launch, performance stress-testing, live analytics dashboards, and continuous optimization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         7. PORTFOLIO SECTION (Filterable Grid)
+         ====================================================================== -->
+    <section id="portfolio" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Featured Work</span>
+          <h2 class="section-title">Forged in Production</h2>
+          <p class="section-subtitle">Explore recent web platforms, growth campaigns, and autonomous AI deployments.</p>
+        </div>
+
+        <div class="portfolio-filters" role="tablist" aria-label="Filter portfolio projects">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="wordpress">WordPress</button>
+          <button class="filter-btn" data-filter="ads">Ads</button>
+          <button class="filter-btn" data-filter="design">Design</button>
+          <button class="filter-btn" data-filter="ai">AI</button>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-card" data-category="web">
+            <div class="portfolio-visual">
+              <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="1"><rect x="2" y="3" width="20" height="18" rx="3"/><polyline points="8 12 5 15 8 18"/><polyline points="16 12 19 15 16 18"/></svg>
+            </div>
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Web Development</span>
+              <h3>QuantumPay FinTech SaaS</h3>
+              <p>Next.js real-time treasury dashboard handling $40M+ monthly volume.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-category="wordpress">
+            <div class="portfolio-visual">
+              <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#2D8CFF" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M4.5 9.5L8.5 19.5L12 11.5L15.5 19.5L19.5 9.5"/></svg>
+            </div>
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">WordPress &amp; WooCommerce</span>
+              <h3>Aetherius Luxury Commerce</h3>
+              <p>Custom headless WooCommerce storefront with 0.6s load times.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-category="ads">
+            <div class="portfolio-visual">
+              <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#FF7A18" stroke-width="1"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Google &amp; Meta Ads</span>
+              <h3>Velocity Scale Engine</h3>
+              <p>Scaled B2B SaaS pipeline 4.8x using server-side Meta CAPI &amp; Google PMax.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-category="design">
+            <div class="portfolio-visual">
+              <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">Graphics &amp; Brand Design</span>
+              <h3>NovaSynth Brand System</h3>
+              <p>3D neon visual identity, motion kit, and Figma component library.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-category="ai">
+            <div class="portfolio-visual">
+              <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">AI / ML Solutions</span>
+              <h3>MedSight Diagnostic RAG</h3>
+              <p>HIPAA-compliant enterprise knowledge assistant indexing 2M+ clinical docs.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card" data-category="ai">
+            <div class="portfolio-visual">
+              <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#FF7A18" stroke-width="1"><rect x="3" y="8" width="18" height="12" rx="3"/><circle cx="8.5" cy="13.5" r="1.5"/><circle cx="15.5" cy="13.5" r="1.5"/></svg>
+            </div>
+            <div class="portfolio-overlay">
+              <span class="portfolio-tag">AI Agents &amp; Automations</span>
+              <h3>OmniVoice Autonomous SDR</h3>
+              <p>Multi-agent n8n + OpenAI voice &amp; CRM system booking 180+ demos/month.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         8. TESTIMONIALS CAROUSEL
+         ====================================================================== -->
+    <section class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Client Voices</span>
+          <h2 class="section-title">Trusted by Ambitious Leaders</h2>
+        </div>
+
+        <div class="carousel-wrapper">
+          <div class="testimonial-stage" aria-live="polite">
+            <p id="testimonial-quote" class="testimonial-quote">
+              “TheBitForge engineered our custom AI sales agent and rebuilt our SaaS platform from scratch. Qualified pipeline conversions jumped 310% in the first 60 days.”
+            </p>
+            <div id="testimonial-author" class="testimonial-author">Marcus Vance</div>
+            <div id="testimonial-role" class="testimonial-role">CTO, NexaCloud AI</div>
+          </div>
+
+          <div class="carousel-controls">
+            <button id="carousel-prev" class="carousel-btn" aria-label="Previous testimonial">←</button>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" aria-label="Slide 1"></button>
+              <button class="carousel-dot" aria-label="Slide 2"></button>
+              <button class="carousel-dot" aria-label="Slide 3"></button>
+            </div>
+            <button id="carousel-next" class="carousel-btn" aria-label="Next testimonial">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         9. FAQ ACCORDION
+         ====================================================================== -->
+    <section class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Got Questions?</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-question" aria-expanded="true">
+              <span>How fast can TheBitForge launch a custom website or AI automation?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Most high-converting WordPress and custom web projects launch in 2 to 4 weeks. Targeted AI workflow automations (n8n, OpenAI, CRM sync) can be architected, tested, and deployed in as little as 7 to 14 days.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do we retain 100% ownership of our code, ad accounts, and AI models?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes. Every repository, custom WordPress block, Figma design file, Google/Meta ad account, and n8n/AI agent workflow is deployed directly in your infrastructure with full IP ownership.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can you integrate AI agents with our existing CRM and internal tools?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Absolutely. We build custom connectors for HubSpot, Salesforce, Slack, WhatsApp, Notion, PostgreSQL, and custom REST/GraphQL APIs so your AI agents act on real-time business data.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How do you structure pricing for ongoing growth and engineering?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              We offer fixed-scope milestone pricing for standalone builds and flexible monthly engineering/growth retainers for continuous paid ads management, AI tuning, and product iteration.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         10. CONTACT SECTION
+         ====================================================================== -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Start Your Project</span>
+          <h2 class="section-title">Let’s Forge Your Next Breakthrough</h2>
+          <p class="section-subtitle">Tell us what you are building and receive a tailored technical roadmap and free quote within 24 hours.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card">
+            <h3>Direct Channels</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+              Prefer direct communication? Reach out to our engineering and growth strategists anytime.
+            </p>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">✉</div>
+              <div>
+                <strong>Email Us</strong>
+                <p style="color: var(--text-secondary); font-size: 0.92rem;">hello@thebitforge.io</p>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">☎</div>
+              <div>
+                <strong>Call / WhatsApp</strong>
+                <p style="color: var(--text-secondary); font-size: 0.92rem;">+1 (555) 234-8900</p>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">⌖</div>
+              <div>
+                <strong>Global Studio</strong>
+                <p style="color: var(--text-secondary); font-size: 0.92rem;">San Francisco • London • Bangalore</p>
+              </div>
+            </div>
+
+            <div class="social-links" aria-label="Social Media Links">
+              <a href="#contact" class="social-btn" aria-label="LinkedIn">in</a>
+              <a href="#contact" class="social-btn" aria-label="X / Twitter">𝕏</a>
+              <a href="#contact" class="social-btn" aria-label="GitHub">GH</a>
+              <a href="#contact" class="social-btn" aria-label="Instagram">IG</a>
+            </div>
+          </div>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="cf-name">Full Name *</label>
+              <input type="text" id="cf-name" class="form-control" placeholder="Alex Mercer" required>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-email">Work Email *</label>
+              <input type="email" id="cf-email" class="form-control" placeholder="alex@company.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-phone">Phone / WhatsApp</label>
+              <input type="tel" id="cf-phone" class="form-control" placeholder="+1 (555) 000-0000">
+            </div>
+
+            <div class="form-group">
+              <label for="cf-service">Service Needed *</label>
+              <select id="cf-service" class="form-control" required>
+                <option value="">Select a Service...</option>
+                <option value="Website Development">Website Development</option>
+                <option value="WordPress Development">WordPress Development</option>
+                <option value="Google & Meta Ads">Google &amp; Meta Ads</option>
+                <option value="Graphics Designing">Graphics Designing</option>
+                <option value="AI / ML Solutions">AI / ML Solutions</option>
+                <option value="AI Agents & Automations">AI Agents &amp; Automations</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="cf-message">Project Details *</label>
+              <textarea id="cf-message" class="form-control" rows="4" placeholder="Tell us about your goals, timeline, and current tech stack..." required></textarea>
+            </div>
+
+            <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
+
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Forge My Free Proposal →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       11. FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#home" class="nav-logo" style="margin-bottom: 0.85rem;">
+            <span class="brand-wordmark">TheBitForge</span>
+          </a>
+          <p style="color: var(--text-secondary); font-size: 0.92rem;">
+            We forge digital ideas into intelligent solutions. Next-generation web engineering, performance marketing, and autonomous AI systems.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Core Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Website Development</a></li>
+            <li><a href="#services">WordPress Development</a></li>
+            <li><a href="#services">Google &amp; Meta Ads</a></li>
+            <li><a href="#services">Graphics Designing</a></li>
+            <li><a href="#services">AI / ML Solutions</a></li>
+            <li><a href="#services">AI Agents &amp; Automations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>AI &amp; Growth Dispatch</h4>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Get weekly insights on AI automations, high-converting web architecture, and ad scaling.
+          </p>
+          <form class="newsletter-box" onsubmit="event.preventDefault(); this.reset(); alert('Subscribed to TheBitForge Dispatch!');">
+            <input type="email" placeholder="Enter your email" aria-label="Email for newsletter" required>
+            <button type="submit" class="btn btn-primary" style="padding: 0.65rem 1.1rem;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 TheBitForge Agency. All rights reserved.</span>
+        <span>Forged with precision • 99+ Lighthouse Ready</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp CTA & Back-to-Top Button -->
+  <a href="https://wa.me/15552348900" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <span>💬 Chat on WhatsApp</span>
+  </a>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Main Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>

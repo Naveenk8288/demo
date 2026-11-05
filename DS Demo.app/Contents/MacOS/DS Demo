@@ -1,0 +1,16 @@
+#!/bin/zsh
+APP_URL="https://ds-visualizer-nu-lilac.vercel.app"
+LOCAL_HTML="/Users/naveennk/DS mini project/index.html"
+
+if [ -d "/Applications/Google Chrome.app" ]; then
+  open -na "Google Chrome" --args --app="$APP_URL"
+elif [ -d "/Applications/Brave Browser.app" ]; then
+  open -na "Brave Browser" --args --app="$APP_URL"
+elif [ -d "/Applications/Microsoft Edge.app" ]; then
+  open -na "Microsoft Edge" --args --app="$APP_URL"
+elif [ -f "$LOCAL_HTML" ]; then
+  open "$LOCAL_HTML"
+else
+  open "$APP_URL"
+fi
+

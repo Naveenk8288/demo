@@ -1,0 +1,88 @@
+{
+  "id": "/",
+  "name": "DS Demo — Data Structures Visualizer",
+  "short_name": "DS Demo",
+  "description": "Interactive educational app and live classroom visualizer for Stack, Queue, Singly Linked List, and Tower of Hanoi.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#061848",
+  "theme_color": "#0f5ad6",
+  "categories": ["education", "developer", "utilities"],
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Stack Visualizer",
+      "short_name": "Stack",
+      "description": "Launch interactive LIFO Stack demo",
+      "url": "/stack.html",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Queue Visualizer",
+      "short_name": "Queue",
+      "description": "Launch interactive FIFO & Circular Queue demo",
+      "url": "/queue.html",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Linked List Visualizer",
+      "short_name": "Linked List",
+      "description": "Launch Singly Linked List demo",
+      "url": "/linkedlist.html",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Tower of Hanoi",
+      "short_name": "Hanoi",
+      "description": "Play or auto-solve Tower of Hanoi",
+      "url": "/hanoi.html",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

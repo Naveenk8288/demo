@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f5ad6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="DS Demo">
+  <meta name="application-name" content="DS Demo">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <title>DS Demo — Interactive DSA Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       THEBITFORGE NEON-GLOW THEME PALETTE (Dark & Light Modes)
+       ========================================================================== */
+    :root[data-theme="dark"] {
+      --bg-primary: #050816;
+      --bg-secondary: rgba(10, 16, 48, 0.72);
+      --bg-tertiary: rgba(22, 34, 82, 0.85);
+      --bg-canvas: rgba(7, 11, 28, 0.88);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: rgba(45, 140, 255, 0.28);
+      --accent-primary: #22d3ee;
+      --accent-blue: #2d8cff;
+      --accent-secondary: #a78bfa;
+      --accent-orange: #ff7a18;
+      --accent-hover: #0284c7;
+      --success: #22c55e;
+      --success-bg: rgba(34, 197, 94, 0.16);
+      --warning: #ff7a18;
+      --warning-bg: rgba(255, 122, 24, 0.18);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.2);
+      --info-bg: rgba(34, 211, 238, 0.14);
+      --node-bg: rgba(12, 20, 56, 0.9);
+      --node-border: #22d3ee;
+      --code-bg: #040711;
+      --code-highlight: rgba(34, 211, 238, 0.25);
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.65), 0 0 25px rgba(45, 140, 255, 0.2);
+    }
+
+    :root[data-theme="light"] {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: rgba(255, 255, 255, 0.9);
+      --bg-tertiary: #e2e8f0;
+      --bg-canvas: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --accent-primary: #0284c7;
+      --accent-blue: #2563eb;
+      --accent-secondary: #7c3aed;
+      --accent-orange: #ea580c;
+      --accent-hover: #0369a1;
+      --success: #16a34a;
+      --success-bg: rgba(22, 163, 74, 0.12);
+      --warning: #ea580c;
+      --warning-bg: rgba(234, 88, 12, 0.12);
+      --danger: #dc2626;
+      --danger-bg: rgba(220, 38, 38, 0.12);
+      --info-bg: rgba(2, 132, 199, 0.12);
+      --node-bg: #ffffff;
+      --node-border: #0284c7;
+      --code-bg: #f1f5f9;
+      --code-highlight: rgba(2, 132, 199, 0.22);
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      background-image:
+        radial-gradient(circle at 12% 20%, rgba(45, 140, 255, 0.16) 0%, transparent 40%),
+        radial-gradient(circle at 88% 25%, rgba(255, 122, 24, 0.14) 0%, transparent 40%),
+        radial-gradient(rgba(34, 211, 238, 0.12) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px;
+      color: var(--text-primary);
+      line-height: 1.5;
+      font-size: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    header {
+      background: var(--bg-secondary);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.35rem;
+      background: linear-gradient(92deg, var(--accent-primary) 0%, var(--accent-blue) 40%, var(--accent-secondary) 70%, var(--accent-orange) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 14px rgba(34, 211, 238, 0.35));
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-orange));
+      color: #fff;
+      padding: 0.25rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-style: normal;
+      font-weight: 900;
+      -webkit-text-fill-color: #ffffff;
+    }
+
+    nav.tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(12, 18, 48, 0.45);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.25);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(45, 140, 255, 0.28), rgba(255, 122, 24, 0.22));
+      color: #ffffff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+    }
+
+    .global-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-primary);
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+    }
+
+    .speed-control input[type="range"] {
+      width: 90px;
+      accent-color: var(--accent-primary);
+      cursor: pointer;
+    }
+
+    .theme-btn {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 15px rgba(255, 122, 24, 0.35);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1600px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .demo-section {
+      display: none;
+      flex-direction: column;
+      gap: 1.15rem;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .demo-section.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .demo-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      background: var(--bg-secondary);
+      backdrop-filter: blur(14px);
+      padding: 1rem 1.35rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    .demo-header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+    }
+
+    .demo-header p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-badges {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .stat-badge {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .stat-badge span {
+      color: var(--accent-primary);
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 1.05rem;
+      margin-left: 0.25rem;
+    }
+
+    .status-bar {
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+    }
+
+    .status-bar.info { background-color: var(--info-bg); border-color: var(--accent-primary); }
+    .status-bar.success { background-color: var(--success-bg); border-color: var(--success); }
+    .status-bar.warning { background-color: var(--warning-bg); border-color: var(--warning); }
+    .status-bar.error { background-color: var(--danger-bg); border-color: var(--danger); animation: shake 0.35s ease; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    .controls-panel {
+      background: var(--bg-secondary);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .input-group label {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      width: 120px;
+    }
+
+    input[type="number"].small-input { width: 80px; }
+
+    .btn {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.6rem 1.05rem;
+      border-radius: 999px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 16px rgba(34, 211, 238, 0.35);
+    }
+
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-primary));
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 18px rgba(45, 140, 255, 0.45);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--accent-secondary), #6366f1);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-danger {
+      background: var(--danger-bg);
+      color: #f87171;
+      border-color: var(--danger);
+    }
+
+    .btn-demo {
+      background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+      color: #fff;
+      border: none;
+      margin-left: auto;
+      box-shadow: 0 0 20px rgba(255, 122, 24, 0.45);
+    }
+
+    .divider { width: 1px; height: 28px; background: var(--border-color); margin: 0 0.25rem; }
+
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1fr 410px;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1150px) {
+      .workspace-grid { grid-template-columns: 1fr; }
+    }
+
+    .viz-canvas {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      min-height: 450px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: auto;
+      box-shadow: inset 0 0 35px rgba(45, 140, 255, 0.12), var(--shadow);
+    }
+
+    .side-panels { display: flex; flex-direction: column; gap: 1rem; }
+
+    .panel {
+      background: var(--bg-secondary);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .panel-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-primary);
+      font-weight: 800;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pseudocode {
+      background: var(--code-bg);
+      border-radius: 10px;
+      padding: 0.65rem;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+    }
+
+    .code-line { padding: 0.15rem 0.5rem; border-radius: 4px; white-space: pre; color: var(--text-secondary); }
+    .code-line.active { background-color: var(--code-highlight); color: var(--text-primary); font-weight: 700; border-left: 3px solid var(--accent-primary); }
+
+    .complexity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.45rem; font-size: 0.9rem; }
+    .complexity-item { background: var(--bg-primary); padding: 0.4rem 0.65rem; border-radius: 8px; display: flex; justify-content: space-between; border: 1px solid var(--border-color); }
+    .complexity-item strong { font-family: ui-monospace, monospace; color: var(--success); }
+    .complexity-item strong.linear { color: var(--warning); }
+    .complexity-item strong.exp { color: var(--danger); }
+
+    .op-log {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      height: 140px;
+      overflow-y: auto;
+      padding: 0.55rem 0.75rem;
+      font-family: ui-monospace, monospace;
+      font-size: 0.86rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .log-entry { padding: 0.2rem 0.4rem; border-radius: 4px; border-left: 3px solid var(--accent-primary); background: var(--bg-secondary); }
+    .log-entry.error { border-left-color: var(--danger); color: var(--danger); }
+
+    /* STACK */
+    .stack-bucket {
+      width: 200px;
+      border-left: 4px solid var(--accent-primary);
+      border-right: 4px solid var(--accent-primary);
+      border-bottom: 5px solid var(--accent-primary);
+      border-radius: 0 0 14px 14px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 6px;
+      background: rgba(34, 211, 238, 0.04);
+      box-shadow: 0 0 25px rgba(34, 211, 238, 0.2);
+    }
+    .stack-slot { height: 42px; width: 100%; border: 1px dashed var(--border-color); border-radius: 8px; display: flex; align-items: center; padding: 0 0.75rem; position: relative; font-size: 0.82rem; color: var(--text-muted); }
+    .stack-element {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-secondary));
+      color: #fff; font-weight: 800; font-size: 1.15rem; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 15px rgba(45, 140, 255, 0.45);
+      transition: transform calc(0.4s / var(--speed-mult, 1)) ease, opacity calc(0.4s / var(--speed-mult, 1)) ease;
+    }
+    .stack-element.entering, .stack-element.leaving { transform: translateY(-130px) scale(0.9); opacity: 0; }
+    .stack-element.peeking { background: linear-gradient(135deg, var(--accent-orange), #f59e0b); transform: scale(1.06); }
+    .top-pointer-badge { position: absolute; right: -130px; background: var(--accent-orange); color: #fff; font-weight: 900; font-size: 0.86rem; padding: 0.2rem 0.6rem; border-radius: 6px; white-space: nowrap; }
+
+    /* QUEUE */
+    .queue-mode-toggle { display: inline-flex; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 999px; overflow: hidden; }
+    .queue-mode-btn { padding: 0.45rem 1rem; border: none; background: transparent; color: var(--text-secondary); font-weight: 700; cursor: pointer; font-size: 0.88rem; }
+    .queue-mode-btn.active { background: var(--accent-primary); color: #050816; }
+    .queue-track { display: flex; align-items: center; gap: 10px; padding: 2.5rem 1.25rem; border-top: 3px solid var(--accent-primary); border-bottom: 3px solid var(--accent-primary); border-radius: 12px; }
+    .queue-track.circular-mode { border: 2px dashed var(--accent-orange); border-radius: 24px; }
+    .queue-cell { width: 74px; height: 74px; border: 1px dashed var(--border-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; background: var(--bg-secondary); }
+    .queue-cell-index { position: absolute; bottom: -24px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted); }
+    .queue-item { width: 100%; height: 100%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-secondary)); color: #fff; font-weight: 800; font-size: 1.2rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: all calc(0.4s / var(--speed-mult, 1)) ease; }
+    .queue-item.entering { transform: translateX(80px); opacity: 0; }
+    .queue-item.leaving { transform: translateX(-80px); opacity: 0; }
+    .queue-item.peeking { background: linear-gradient(135deg, var(--accent-orange), #f59e0b); }
+    .q-pointer { position: absolute; font-size: 0.75rem; font-weight: 900; padding: 0.15rem 0.45rem; border-radius: 4px; white-space: nowrap; }
+    .q-pointer.front-ptr { top: -32px; background: var(--success); color: #fff; }
+    .q-pointer.rear-ptr { bottom: -48px; background: var(--accent-orange); color: #fff; }
+
+    /* LINKED LIST */
+    .sll-stage { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; width: 100%; padding: 2rem 1rem; }
+    .sll-head-badge { background: var(--accent-secondary); color: #fff; font-weight: 900; padding: 0.45rem 0.8rem; border-radius: 8px; }
+    .sll-node-wrapper { display: flex; align-items: center; position: relative; margin: 1.2rem 0; transition: all calc(0.35s / var(--speed-mult, 1)) ease; }
+    .sll-node-wrapper.entering { transform: translateY(-40px); opacity: 0; }
+    .sll-node-wrapper.leaving { transform: translateY(40px); opacity: 0; }
+    .sll-node { display: flex; border: 2px solid var(--node-border); border-radius: 10px; overflow: hidden; background: var(--node-bg); }
+    .sll-node.current { border-color: var(--accent-orange); box-shadow: 0 0 18px var(--accent-orange); }
+    .sll-node.found { border-color: var(--success); box-shadow: 0 0 20px var(--success); }
+    .sll-node-data { padding: 0.6rem 0.95rem; font-weight: 800; font-size: 1.15rem; border-right: 1px solid var(--border-color); }
+    .sll-node-next { padding: 0.6rem; font-family: monospace; font-size: 0.82rem; color: var(--accent-primary); display: flex; align-items: center; }
+    .sll-index-tag { position: absolute; bottom: -22px; left: 14px; font-size: 0.78rem; color: var(--text-muted); font-family: monospace; }
+    .sll-ptr-tag { position: absolute; top: -30px; left: 8px; background: var(--accent-orange); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.1rem 0.45rem; border-radius: 4px; white-space: nowrap; }
+    .sll-arrow { font-size: 1.5rem; font-weight: 900; color: var(--accent-primary); margin: 0 0.3rem; }
+    .sll-null { background: var(--bg-tertiary); color: var(--danger); border: 1px dashed var(--danger); padding: 0.45rem 0.75rem; border-radius: 8px; font-family: monospace; font-weight: 900; }
+
+    /* HANOI */
+    .hanoi-stage { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 1.25rem; }
+    .hanoi-move-banner { background: var(--bg-secondary); border: 1px solid var(--accent-primary); padding: 0.5rem 1.35rem; border-radius: 999px; font-weight: 800; color: var(--accent-primary); }
+    .hanoi-rods-area { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; width: 100%; max-width: 880px; padding-top: 2rem; }
+    .hanoi-rod-column { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 0.75rem; border-radius: 14px; border: 1px solid transparent; }
+    .hanoi-rod-column.selected { background: rgba(34, 211, 238, 0.1); border-color: var(--accent-primary); }
+    .hanoi-peg-container { width: 100%; height: 230px; display: flex; flex-direction: column-reverse; align-items: center; position: relative; padding-bottom: 12px; }
+    .hanoi-peg-pole { position: absolute; bottom: 12px; width: 10px; height: 200px; background: var(--border-color); border-radius: 5px 5px 0 0; }
+    .hanoi-peg-base { position: absolute; bottom: 0; width: 90%; height: 10px; background: var(--accent-primary); border-radius: 5px; box-shadow: 0 0 12px var(--accent-primary); }
+    .hanoi-disc { height: 26px; border-radius: 13px; z-index: 3; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 0.85rem; margin-bottom: 3px; transition: transform calc(0.3s / var(--speed-mult, 1)) ease; }
+    .hanoi-disc.lifted { transform: translateY(-40px) scale(1.05); outline: 2px solid #fff; }
+    .hanoi-rod-label { margin-top: 0.65rem; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-badge">DSA LAB</span>
+      <span>TheBitForge</span>
+    </div>
+
+    <nav class="tabs" role="tablist" aria-label="Data Structure Demos">
+      <button class="tab-btn active" role="tab" aria-selected="true" id="tab-stack" onclick="switchTab('stack')">1. Stack (LIFO)</button>
+      <button class="tab-btn" role="tab" aria-selected="false" id="tab-queue" onclick="switchTab('queue')">2. Queue (FIFO)</button>
+      <button class="tab-btn" role="tab" aria-selected="false" id="tab-sll" onclick="switchTab('sll')">3. Singly Linked List</button>
+      <button class="tab-btn" role="tab" aria-selected="false" id="tab-hanoi" onclick="switchTab('hanoi')">4. Tower of Hanoi</button>
+    </nav>
+
+    <div class="global-controls">
+      <div class="speed-control">
+        <label for="speed-slider">Speed:</label>
+        <input type="range" id="speed-slider" min="0.5" max="3" step="0.25" value="1" oninput="updateSpeed(this.value)">
+        <span id="speed-label">1.0x</span>
+      </div>
+      <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">☀️</span> <span id="theme-text">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. STACK -->
+    <section id="sec-stack" class="demo-section active">
+      <div class="demo-header">
+        <div>
+          <h1>Stack (Last-In, First-Out)</h1>
+          <p>Elements are pushed and popped exclusively from the TOP end.</p>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-badge">TOP: <span id="stack-top-stat">-1</span></div>
+          <div class="stat-badge">Size: <span id="stack-size-stat">0 / 8</span></div>
+        </div>
+      </div>
+      <div id="stack-status" class="status-bar info"><span>Ready! Enter a value and click Push, or run the Preset Demo.</span></div>
+      <div class="controls-panel">
+        <div class="input-group">
+          <label for="stack-input">Value:</label>
+          <input type="text" id="stack-input" placeholder="e.g. 42" maxlength="8">
+        </div>
+        <button class="btn btn-primary" onclick="stackViz.push()">Push(val)</button>
+        <button class="btn btn-secondary" onclick="stackViz.pop()">Pop()</button>
+        <button class="btn" onclick="stackViz.peek()">Peek()</button>
+        <button class="btn" onclick="stackViz.isEmpty()">isEmpty()</button>
+        <button class="btn" onclick="stackViz.isFull()">isFull()</button>
+        <div class="divider"></div>
+        <div class="input-group">
+          <label for="stack-cap-input">Cap:</label>
+          <input type="number" id="stack-cap-input" class="small-input" min="3" max="12" value="8" onchange="stackViz.setCapacity(this.value)">
+        </div>
+        <button class="btn btn-danger" onclick="stackViz.clear()">Clear</button>
+        <button class="btn btn-demo" onclick="stackViz.runDemo()">▶ Preset Demo</button>
+      </div>
+      <div class="workspace-grid">
+        <div class="viz-canvas">
+          <div id="stack-bucket" class="stack-bucket"></div>
+        </div>
+        <div class="side-panels">
+          <div class="panel">
+            <div class="panel-title"><span>Pseudocode</span><span id="stack-op-name">Idle</span></div>
+            <div id="stack-code" class="pseudocode"><div class="code-line">// Select an operation</div></div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Time Complexity</div>
+            <div class="complexity-grid">
+              <div class="complexity-item"><span>Push</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>Pop</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>Peek</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>isEmpty/Full</span><strong>O(1)</strong></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Operation Log</div>
+            <div id="stack-log" class="op-log"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. QUEUE -->
+    <section id="sec-queue" class="demo-section">
+      <div class="demo-header">
+        <div>
+          <h1>Queue (First-In, First-Out)</h1>
+          <p>Elements enter at REAR (enqueue) and leave from FRONT (dequeue).</p>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-badge">Mode: <span id="queue-mode-stat">Simple</span></div>
+          <div class="stat-badge">FRONT: <span id="queue-front-stat">-1</span></div>
+          <div class="stat-badge">REAR: <span id="queue-rear-stat">-1</span></div>
+          <div class="stat-badge">Size: <span id="queue-size-stat">0 / 8</span></div>
+        </div>
+      </div>
+      <div id="queue-status" class="status-bar info"><span>Ready! Enqueue elements or toggle Simple / Circular Queue.</span></div>
+      <div class="controls-panel">
+        <div class="queue-mode-toggle">
+          <button id="q-mode-simple" class="queue-mode-btn active" onclick="queueViz.setMode('simple')">Simple</button>
+          <button id="q-mode-circular" class="queue-mode-btn" onclick="queueViz.setMode('circular')">Circular</button>
+        </div>
+        <div class="input-group">
+          <label for="queue-input">Value:</label>
+          <input type="text" id="queue-input" placeholder="e.g. A1" maxlength="8">
+        </div>
+        <button class="btn btn-primary" onclick="queueViz.enqueue()">Enqueue</button>
+        <button class="btn btn-secondary" onclick="queueViz.dequeue()">Dequeue</button>
+        <button class="btn" onclick="queueViz.peek()">Peek</button>
+        <button class="btn" onclick="queueViz.isEmpty()">isEmpty</button>
+        <button class="btn" onclick="queueViz.isFull()">isFull</button>
+        <button class="btn btn-danger" onclick="queueViz.clear()">Clear</button>
+        <button class="btn btn-demo" onclick="queueViz.runDemo()">▶ Preset Demo</button>
+      </div>
+      <div class="workspace-grid">
+        <div class="viz-canvas">
+          <div id="queue-wrap-hint" style="display:none; color:var(--accent-orange); margin-bottom:1rem; font-weight:700;">↻ Circular Modulo Wrap-Around Active</div>
+          <div id="queue-track" class="queue-track"></div>
+        </div>
+        <div class="side-panels">
+          <div class="panel">
+            <div class="panel-title"><span>Pseudocode</span><span id="queue-op-name">Idle</span></div>
+            <div id="queue-code" class="pseudocode"><div class="code-line">// Select an operation</div></div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Time Complexity</div>
+            <div class="complexity-grid">
+              <div class="complexity-item"><span>Enqueue</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>Dequeue</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>Peek</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>isEmpty/Full</span><strong>O(1)</strong></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Operation Log</div>
+            <div id="queue-log" class="op-log"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SINGLY LINKED LIST -->
+    <section id="sec-sll" class="demo-section">
+      <div class="demo-header">
+        <div>
+          <h1>Singly Linked List</h1>
+          <p>Dynamic nodes with a data field and next pointer terminated by NULL.</p>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-badge">HEAD: <span id="sll-head-stat">NULL</span></div>
+          <div class="stat-badge">Length: <span id="sll-len-stat">0</span></div>
+        </div>
+      </div>
+      <div id="sll-status" class="status-bar info"><span>Ready! Insert, Delete, Search, Traverse, or Reverse nodes.</span></div>
+      <div class="controls-panel">
+        <div class="input-group">
+          <label for="sll-val-input">Val:</label>
+          <input type="text" id="sll-val-input" placeholder="25" maxlength="6">
+        </div>
+        <div class="input-group">
+          <label for="sll-pos-input">Pos:</label>
+          <input type="number" id="sll-pos-input" class="small-input" min="0" max="20" value="1">
+        </div>
+        <button class="btn btn-primary" onclick="sllViz.insertHead()">Ins Head</button>
+        <button class="btn btn-primary" onclick="sllViz.insertTail()">Ins Tail</button>
+        <button class="btn btn-primary" onclick="sllViz.insertAtPos()">Ins @ Pos</button>
+        <button class="btn btn-secondary" onclick="sllViz.deleteHead()">Del Head</button>
+        <button class="btn btn-secondary" onclick="sllViz.deleteTail()">Del Tail</button>
+        <button class="btn btn-secondary" onclick="sllViz.deleteByValue()">Del Val</button>
+        <button class="btn" onclick="sllViz.searchByValue()">Search</button>
+        <button class="btn" onclick="sllViz.traverse()">Traverse</button>
+        <button class="btn" onclick="sllViz.reverse()">Reverse</button>
+        <button class="btn btn-danger" onclick="sllViz.clear()">Clear</button>
+        <button class="btn btn-demo" onclick="sllViz.runDemo()">▶ Preset Demo</button>
+      </div>
+      <div class="workspace-grid">
+        <div class="viz-canvas"><div id="sll-stage" class="sll-stage"></div></div>
+        <div class="side-panels">
+          <div class="panel">
+            <div class="panel-title"><span>Pseudocode</span><span id="sll-op-name">Idle</span></div>
+            <div id="sll-code" class="pseudocode"><div class="code-line">// Select an operation</div></div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Time Complexity</div>
+            <div class="complexity-grid">
+              <div class="complexity-item"><span>Ins/Del Head</span><strong>O(1)</strong></div>
+              <div class="complexity-item"><span>Ins/Del Tail</span><strong class="linear">O(n)</strong></div>
+              <div class="complexity-item"><span>Search</span><strong class="linear">O(n)</strong></div>
+              <div class="complexity-item"><span>Reverse</span><strong class="linear">O(n)</strong></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Operation Log</div>
+            <div id="sll-log" class="op-log"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TOWER OF HANOI -->
+    <section id="sec-hanoi" class="demo-section">
+      <div class="demo-header">
+        <div>
+          <h1>Tower of Hanoi</h1>
+          <p>Move all discs from Rod A to Rod C without placing a larger disc onto a smaller one.</p>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-badge">Discs: <span id="hanoi-n-stat">3</span></div>
+          <div class="stat-badge">Moves: <span id="hanoi-moves-stat">0</span></div>
+          <div class="stat-badge">Min (2ⁿ-1): <span id="hanoi-min-stat">7</span></div>
+        </div>
+      </div>
+      <div id="hanoi-status" class="status-bar info"><span>Click rods to move discs manually or run Auto-Solve!</span></div>
+      <div class="controls-panel">
+        <div class="input-group">
+          <label for="hanoi-discs-select">Discs:</label>
+          <select id="hanoi-discs-select" onchange="hanoiViz.changeDiscs(this.value)">
+            <option value="3" selected>3 Discs</option>
+            <option value="4">4 Discs</option>
+            <option value="5">5 Discs</option>
+            <option value="6">6 Discs</option>
+            <option value="7">7 Discs</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="hanoi-play-btn" onclick="hanoiViz.playAuto()">▶ Auto-Solve</button>
+        <button class="btn btn-secondary" id="hanoi-pause-btn" onclick="hanoiViz.pauseAuto()" disabled>⏸ Pause</button>
+        <button class="btn" id="hanoi-step-btn" onclick="hanoiViz.stepAuto()">⏭ Step</button>
+        <button class="btn btn-danger" onclick="hanoiViz.reset()">Reset</button>
+        <button class="btn btn-demo" onclick="hanoiViz.runDemo()">▶ Preset Demo</button>
+      </div>
+      <div class="workspace-grid">
+        <div class="viz-canvas">
+          <div class="hanoi-stage">
+            <div id="hanoi-move-banner" class="hanoi-move-banner">Ready</div>
+            <div class="hanoi-rods-area">
+              <div class="hanoi-rod-column" id="hanoi-col-A" onclick="hanoiViz.handleRodClick('A')">
+                <div class="hanoi-peg-container" id="hanoi-peg-A"><div class="hanoi-peg-pole"></div><div class="hanoi-peg-base"></div></div>
+                <div class="hanoi-rod-label">ROD A</div>
+              </div>
+              <div class="hanoi-rod-column" id="hanoi-col-B" onclick="hanoiViz.handleRodClick('B')">
+                <div class="hanoi-peg-container" id="hanoi-peg-B"><div class="hanoi-peg-pole"></div><div class="hanoi-peg-base"></div></div>
+                <div class="hanoi-rod-label">ROD B</div>
+              </div>
+              <div class="hanoi-rod-column" id="hanoi-col-C" onclick="hanoiViz.handleRodClick('C')">
+                <div class="hanoi-peg-container" id="hanoi-peg-C"><div class="hanoi-peg-pole"></div><div class="hanoi-peg-base"></div></div>
+                <div class="hanoi-rod-label">ROD C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="side-panels">
+          <div class="panel">
+            <div class="panel-title"><span>Recursive Pseudocode</span><span>hanoi(n, A, B, C)</span></div>
+            <div id="hanoi-code" class="pseudocode">
+              <div class="code-line" id="hc-0">function hanoi(n, from, aux, to):</div>
+              <div class="code-line" id="hc-1">  if n == 1:</div>
+              <div class="code-line" id="hc-2">    move disc 1 from 'from' to 'to'</div>
+              <div class="code-line" id="hc-3">    return</div>
+              <div class="code-line" id="hc-4">  hanoi(n - 1, from, to, aux)</div>
+              <div class="code-line" id="hc-5">  move disc n from 'from' to 'to'</div>
+              <div class="code-line" id="hc-6">  hanoi(n - 1, aux, from, to)</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Complexity</div>
+            <div class="complexity-grid">
+              <div class="complexity-item"><span>Time</span><strong class="exp">O(2ⁿ)</strong></div>
+              <div class="complexity-item"><span>Space</span><strong class="linear">O(n)</strong></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Operation Log</div>
+            <div id="hanoi-log" class="op-log"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let speedMultiplier = 1.0;
+    function updateSpeed(val) {
+      speedMultiplier = parseFloat(val);
+      document.getElementById('speed-label').textContent = speedMultiplier + 'x';
+      document.documentElement.style.setProperty('--speed-mult', speedMultiplier);
+    }
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms / speedMultiplier)); }
+    function toggleTheme() {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      document.getElementById('theme-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+      document.getElementById('theme-text').textContent = next === 'dark' ? 'Light' : 'Dark';
+    }
+    function switchTab(tabId) {
+      ['stack', 'queue', 'sll', 'hanoi'].forEach(t => {
+        document.getElementById('tab-' + t).classList.toggle('active', t === tabId);
+        document.getElementById('sec-' + t).classList.toggle('active', t === tabId);
+      });
+    }
+    function setStatus(prefix, msg, type = 'info') {
+      const bar = document.getElementById(`${prefix}-status`);
+      bar.className = `status-bar ${type}`;
+      bar.innerHTML = `<span>${msg}</span>`;
+    }
+    function addLog(prefix, msg, isErr = false) {
+      const box = document.getElementById(`${prefix}-log`);
+      const el = document.createElement('div');
+      el.className = 'log-entry' + (isErr ? ' error' : '');
+      el.textContent = msg;
+      box.prepend(el);
+    }
+    function renderPseudocode(prefix, opName, lines, activeIdx = -1) {
+      document.getElementById(`${prefix}-op-name`).textContent = opName;
+      document.getElementById(`${prefix}-code`).innerHTML = lines.map((l, i) =>
+        `<div class="code-line ${i === activeIdx ? 'active' : ''}">${l}</div>`
+      ).join('');
+    }
+
+    class StackVisualizer {
+      constructor() { this.capacity = 8; this.items = []; this.busy = false; this.renderBucket(); }
+      renderBucket(stateMap = {}) {
+        const b = document.getElementById('stack-bucket');
+        b.innerHTML = '';
+        const top = this.items.length - 1;
+        for (let i = 0; i < this.capacity; i++) {
+          const s = document.createElement('div');
+          s.className = 'stack-slot';
+          s.innerHTML = `<span>[${i}]</span>`;
+          if (i < this.items.length) {
+            const el = document.createElement('div');
+            el.className = 'stack-element ' + (stateMap[i] || '');
+            el.textContent = this.items[i];
+            s.appendChild(el);
+          }
+          if (i === top) {
+            const p = document.createElement('div');
+            p.className = 'top-pointer-badge';
+            p.textContent = `◀ TOP (${top})`;
+            s.appendChild(p);
+          }
+          b.appendChild(s);
+        }
+        document.getElementById('stack-top-stat').textContent = top;
+        document.getElementById('stack-size-stat').textContent = `${this.items.length} / ${this.capacity}`;
+      }
+      setCapacity(c) {
+        if (this.busy) return;
+        this.capacity = Math.max(3, Math.min(12, parseInt(c, 10) || 8));
+        this.items = this.items.slice(0, this.capacity);
+        this.renderBucket();
+      }
+      async push(v = null) {
+        if (this.busy) return;
+        const inp = document.getElementById('stack-input');
+        const val = v !== null ? String(v) : inp.value.trim();
+        if (!val) return setStatus('stack', 'Enter a value to push.', 'warning');
+        if (this.items.length >= this.capacity) {
+          addLog('stack', `Push(${val}) → Stack Overflow`, true);
+          return setStatus('stack', 'Stack Overflow!', 'error');
+        }
+        this.busy = true;
+        this.items.push(val);
+        const idx = this.items.length - 1;
+        renderPseudocode('stack', 'Push', ['if top == cap-1: return OVERFLOW', 'stack[++top] = ' + val], 1);
+        this.renderBucket({ [idx]: 'entering' });
+        await sleep(50);
+        this.renderBucket();
+        if (v === null) inp.value = '';
+        setStatus('stack', `Pushed "${val}" at TOP [${idx}].`, 'success');
+        addLog('stack', `Push(${val})`);
+        await sleep(300);
+        this.busy = false;
+      }
+      async pop() {
+        if (this.busy) return;
+        if (!this.items.length) {
+          addLog('stack', 'Pop() → Stack Underflow', true);
+          return setStatus('stack', 'Stack Underflow!', 'error');
+        }
+        this.busy = true;
+        const idx = this.items.length - 1;
+        const val = this.items[idx];
+        renderPseudocode('stack', 'Pop', ['if top == -1: return UNDERFLOW', 'return stack[top--]'], 1);
+        this.renderBucket({ [idx]: 'leaving' });
+        await sleep(380);
+        this.items.pop();
+        this.renderBucket();
+        setStatus('stack', `Popped "${val}".`, 'success');
+        addLog('stack', `Pop() → ${val}`);
+        this.busy = false;
+      }
+      async peek() {
+        if (this.busy || !this.items.length) return setStatus('stack', 'Stack is empty!', 'error');
+        const idx = this.items.length - 1;
+        this.renderBucket({ [idx]: 'peeking' });
+        setStatus('stack', `TOP is "${this.items[idx]}".`, 'info');
+        await sleep(500);
+        this.renderBucket();
+      }
+      isEmpty() { setStatus('stack', `isEmpty() → ${this.items.length === 0}`, 'info'); }
+      isFull() { setStatus('stack', `isFull() → ${this.items.length >= this.capacity}`, 'info'); }
+      clear() { if (!this.busy) { this.items = []; this.renderBucket(); setStatus('stack', 'Cleared.', 'info'); } }
+      async runDemo() {
+        this.clear();
+        await this.push(10); await sleep(300);
+        await this.push(20); await sleep(300);
+        await this.push(30); await sleep(300);
+        await this.pop();
+      }
+    }
+
+    class QueueVisualizer {
+      constructor() { this.capacity = 8; this.mode = 'simple'; this.clear(); }
+      setMode(m) {
+        if (this.busy) return;
+        this.mode = m;
+        document.getElementById('q-mode-simple').classList.toggle('active', m === 'simple');
+        document.getElementById('q-mode-circular').classList.toggle('active', m === 'circular');
+        document.getElementById('queue-mode-stat').textContent = m === 'simple' ? 'Simple' : 'Circular';
+        document.getElementById('queue-track').classList.toggle('circular-mode', m === 'circular');
+        document.getElementById('queue-wrap-hint').style.display = m === 'circular' ? 'block' : 'none';
+        this.clear();
+      }
+      renderTrack(stateMap = {}) {
+        const t = document.getElementById('queue-track');
+        t.innerHTML = '';
+        for (let i = 0; i < this.capacity; i++) {
+          const c = document.createElement('div');
+          c.className = 'queue-cell';
+          if (i === this.front && this.size > 0) c.innerHTML += `<div class="q-pointer front-ptr">FRONT [${i}]</div>`;
+          if (i === this.rear && this.size > 0) c.innerHTML += `<div class="q-pointer rear-ptr">REAR [${i}]</div>`;
+          if (this.arr[i] !== null) c.innerHTML += `<div class="queue-item ${stateMap[i] || ''}">${this.arr[i]}</div>`;
+          c.innerHTML += `<div class="queue-cell-index">[${i}]</div>`;
+          t.appendChild(c);
+        }
+        document.getElementById('queue-front-stat').textContent = this.front;
+        document.getElementById('queue-rear-stat').textContent = this.rear;
+        document.getElementById('queue-size-stat').textContent = `${this.size} / ${this.capacity}`;
+      }
+      checkFull() { return this.mode === 'simple' ? this.rear === this.capacity - 1 : this.size === this.capacity; }
+      async enqueue(v = null) {
+        if (this.busy) return;
+        const inp = document.getElementById('queue-input');
+        const val = v !== null ? String(v) : inp.value.trim();
+        if (!val) return setStatus('queue', 'Enter a value.', 'warning');
+        if (this.checkFull()) return setStatus('queue', 'Queue is Full / Overflow!', 'error');
+        this.busy = true;
+        if (this.front === -1) this.front = 0;
+        this.rear = this.mode === 'circular' ? (this.rear + 1) % this.capacity : this.rear + 1;
+        this.arr[this.rear] = val;
+        this.size++;
+        renderPseudocode('queue', 'Enqueue', ['rear = (rear + 1) % N', 'queue[rear] = ' + val], 1);
+        this.renderTrack({ [this.rear]: 'entering' });
+        await sleep(50);
+        this.renderTrack();
+        if (v === null) inp.value = '';
+        setStatus('queue', `Enqueued "${val}" at [${this.rear}].`, 'success');
+        addLog('queue', `Enqueue(${val})`);
+        await sleep(300);
+        this.busy = false;
+      }
+      async dequeue() {
+        if (this.busy) return;
+        if (!this.size) return setStatus('queue', 'Queue is empty!', 'error');
+        this.busy = true;
+        const idx = this.front;
+        const val = this.arr[idx];
+        this.renderTrack({ [idx]: 'leaving' });
+        await sleep(380);
+        this.arr[idx] = null;
+        this.size--;
+        if (!this.size) { this.front = -1; this.rear = -1; }
+        else { this.front = this.mode === 'circular' ? (this.front + 1) % this.capacity : this.front + 1; }
+        this.renderTrack();
+        setStatus('queue', `Dequeued "${val}".`, 'success');
+        addLog('queue', `Dequeue() → ${val}`);
+        this.busy = false;
+      }
+      async peek() {
+        if (!this.size) return setStatus('queue', 'Queue is empty!', 'error');
+        this.renderTrack({ [this.front]: 'peeking' });
+        setStatus('queue', `FRONT is "${this.arr[this.front]}".`, 'info');
+        await sleep(500);
+        this.renderTrack();
+      }
+      isEmpty() { setStatus('queue', `isEmpty() → ${this.size === 0}`, 'info'); }
+      isFull() { setStatus('queue', `isFull() → ${this.checkFull()}`, 'info'); }
+      clear() {
+        this.arr = new Array(8).fill(null);
+        this.front = -1; this.rear = -1; this.size = 0;
+        this.renderTrack();
+      }
+      async runDemo() {
+        this.clear();
+        await this.enqueue(15); await sleep(300);
+        await this.enqueue(25); await sleep(300);
+        await this.dequeue();
+      }
+    }
+
+    class LinkedListVisualizer {
+      constructor() { this.nodes = [10, 20, 30]; this.busy = false; this.renderList(); }
+      renderList(opts = {}) {
+        const s = document.getElementById('sll-stage');
+        s.innerHTML = `<div class="sll-head-badge">HEAD</div><span class="sll-arrow">→</span>`;
+        this.nodes.forEach((v, i) => {
+          const w = document.createElement('div');
+          w.className = 'sll-node-wrapper ' + (i === opts.enteringIdx ? 'entering' : '') + (i === opts.leavingIdx ? 'leaving' : '');
+          if (opts.ptrLabels && opts.ptrLabels[i]) w.innerHTML += `<div class="sll-ptr-tag">${opts.ptrLabels[i]}</div>`;
+          w.innerHTML += `<div class="sll-node ${i === opts.currentIdx ? 'current' : ''} ${i === opts.foundIdx ? 'found' : ''}"><div class="sll-node-data">${v}</div><div class="sll-node-next">${i < this.nodes.length - 1 ? '•→' : 'NULL'}</div></div><div class="sll-index-tag">idx ${i}</div>`;
+          s.appendChild(w);
+          s.innerHTML += `<span class="sll-arrow">→</span>`;
+        });
+        s.innerHTML += `<div class="sll-null">NULL</div>`;
+        document.getElementById('sll-head-stat').textContent = this.nodes.length ? this.nodes[0] : 'NULL';
+        document.getElementById('sll-len-stat').textContent = this.nodes.length;
+      }
+      getVal(v) {
+        if (v !== null && v !== undefined) return String(v);
+        const inp = document.getElementById('sll-val-input');
+        const val = inp.value.trim();
+        inp.value = '';
+        return val;
+      }
+      async insertHead(v = null) {
+        if (this.busy) return;
+        const val = this.getVal(v);
+        if (!val) return setStatus('sll', 'Enter a value.', 'warning');
+        this.nodes.unshift(val);
+        this.renderList({ enteringIdx: 0 });
+        await sleep(60);
+        this.renderList();
+        setStatus('sll', `Inserted "${val}" at HEAD.`, 'success');
+        addLog('sll', `InsertHead(${val})`);
+      }
+      async insertTail(v = null) {
+        if (this.busy) return;
+        const val = this.getVal(v);
+        if (!val) return setStatus('sll', 'Enter a value.', 'warning');
+        this.busy = true;
+        for (let i = 0; i < this.nodes.length; i++) {
+          this.renderList({ currentIdx: i, ptrLabels: { [i]: 'curr' } });
+          await sleep(260);
+        }
+        this.nodes.push(val);
+        this.renderList();
+        setStatus('sll', `Inserted "${val}" at Tail.`, 'success');
+        addLog('sll', `InsertTail(${val})`);
+        this.busy = false;
+      }
+      async insertAtPos() {
+        const pos = parseInt(document.getElementById('sll-pos-input').value, 10);
+        const val = this.getVal();
+        if (!val || isNaN(pos) || pos < 0 || pos > this.nodes.length) return setStatus('sll', 'Check value and position.', 'error');
+        this.nodes.splice(pos, 0, val);
+        this.renderList();
+        setStatus('sll', `Inserted "${val}" at index ${pos}.`, 'success');
+      }
+      async deleteHead() {
+        if (!this.nodes.length) return setStatus('sll', 'List is empty!', 'error');
+        const v = this.nodes.shift();
+        this.renderList();
+        setStatus('sll', `Deleted HEAD "${v}".`, 'success');
+      }
+      async deleteTail() {
+        if (!this.nodes.length) return setStatus('sll', 'List is empty!', 'error');
+        const v = this.nodes.pop();
+        this.renderList();
+        setStatus('sll', `Deleted Tail "${v}".`, 'success');
+      }
+      async deleteByValue() {
+        const val = this.getVal();
+        const idx = this.nodes.findIndex(x => String(x) === val);
+        if (idx === -1) return setStatus('sll', 'Value not found!', 'error');
+        this.nodes.splice(idx, 1);
+        this.renderList();
+        setStatus('sll', `Deleted "${val}".`, 'success');
+      }
+      async searchByValue(v = null) {
+        const val = this.getVal(v);
+        if (!val) return;
+        this.busy = true;
+        for (let i = 0; i < this.nodes.length; i++) {
+          this.renderList({ currentIdx: i });
+          await sleep(300);
+          if (String(this.nodes[i]) === val) {
+            this.renderList({ foundIdx: i });
+            setStatus('sll', `Found "${val}" at index ${i}!`, 'success');
+            await sleep(500);
+            this.renderList();
+            this.busy = false;
+            return;
+          }
+        }
+        this.renderList();
+        setStatus('sll', 'Value not found.', 'error');
+        this.busy = false;
+      }
+      async traverse() {
+        this.busy = true;
+        for (let i = 0; i < this.nodes.length; i++) {
+          this.renderList({ currentIdx: i, ptrLabels: { [i]: 'curr' } });
+          await sleep(320);
+        }
+        this.renderList();
+        this.busy = false;
+      }
+      async reverse() {
+        this.nodes.reverse();
+        this.renderList();
+        setStatus('sll', 'Reversed Linked List!', 'success');
+      }
+      clear() { this.nodes = []; this.renderList(); }
+      async runDemo() {
+        this.nodes = [20, 30]; this.renderList();
+        await this.insertHead(10); await sleep(350);
+        await this.insertTail(40); await sleep(350);
+        await this.reverse();
+      }
+    }
+
+    class HanoiVisualizer {
+      constructor() {
+        this.numDiscs = 3;
+        this.colors = ['#22d3ee', '#2d8cff', '#a78bfa', '#ff7a18', '#22c55e', '#eab308', '#ec4899'];
+        this.reset();
+      }
+      generatePlan(n, from, aux, to, list = []) {
+        if (n === 1) { list.push({ disc: 1, from, to, line: 2 }); return list; }
+        this.generatePlan(n - 1, from, to, aux, list);
+        list.push({ disc: n, from, to, line: 5 });
+        this.generatePlan(n - 1, aux, from, to, list);
+        return list;
+      }
+      changeDiscs(n) { this.numDiscs = parseInt(n, 10); this.reset(); }
+      reset() {
+        this.pauseAuto();
+        this.rods = { A: [], B: [], C: [] };
+        for (let d = this.numDiscs; d >= 1; d--) this.rods.A.push(d);
+        this.selectedRod = null;
+        this.movesCount = 0;
+        this.plan = this.generatePlan(this.numDiscs, 'A', 'B', 'C');
+        this.planIndex = 0;
+        this.renderRods();
+        document.getElementById('hanoi-move-banner').textContent = 'Ready (0 moves)';
+      }
+      renderRods() {
+        ['A', 'B', 'C'].forEach(r => {
+          document.getElementById(`hanoi-col-${r}`).classList.toggle('selected', this.selectedRod === r);
+          const peg = document.getElementById(`hanoi-peg-${r}`);
+          peg.innerHTML = `<div class="hanoi-peg-pole"></div><div class="hanoi-peg-base"></div>`;
+          this.rods[r].forEach((d, idx) => {
+            const el = document.createElement('div');
+            el.className = 'hanoi-disc' + (this.selectedRod === r && idx === this.rods[r].length - 1 ? ' lifted' : '');
+            el.style.width = `${28 + (d / this.numDiscs) * 62}%`;
+            el.style.background = this.colors[(d - 1) % this.colors.length];
+            el.textContent = `Disc ${d}`;
+            peg.appendChild(el);
+          });
+        });
+        document.getElementById('hanoi-n-stat').textContent = this.numDiscs;
+        document.getElementById('hanoi-moves-stat').textContent = this.movesCount;
+        document.getElementById('hanoi-min-stat').textContent = Math.pow(2, this.numDiscs) - 1;
+      }
+      handleRodClick(r) {
+        if (this.isPlaying) return;
+        if (!this.selectedRod) {
+          if (!this.rods[r].length) return setStatus('hanoi', `Rod ${r} is empty!`, 'warning');
+          this.selectedRod = r;
+          this.renderRods();
+        } else if (this.selectedRod === r) {
+          this.selectedRod = null;
+          this.renderRods();
+        } else {
+          const from = this.selectedRod;
+          const disc = this.rods[from][this.rods[from].length - 1];
+          const top = this.rods[r][this.rods[r].length - 1];
+          if (top !== undefined && disc > top) {
+            this.selectedRod = null;
+            this.renderRods();
+            return setStatus('hanoi', `Invalid Move! Larger Disc ${disc} cannot go on Disc ${top}.`, 'error');
+          }
+          this.rods[from].pop();
+          this.rods[r].push(disc);
+          this.selectedRod = null;
+          this.movesCount++;
+          this.renderRods();
+          if (this.rods.C.length === this.numDiscs) setStatus('hanoi', `Solved in ${this.movesCount} moves!`, 'success');
+        }
+      }
+      async stepAuto() {
+        if (this.planIndex >= this.plan.length) return false;
+        const step = this.plan[this.planIndex++];
+        this.rods[step.from].pop();
+        this.rods[step.to].push(step.disc);
+        this.movesCount++;
+        const msg = `Move disc ${step.disc} from ${step.from} to ${step.to}`;
+        document.getElementById('hanoi-move-banner').textContent = msg;
+        setStatus('hanoi', msg, 'info');
+        addLog('hanoi', msg);
+        this.renderRods();
+        if (this.rods.C.length === this.numDiscs) setStatus('hanoi', `Solved in ${this.movesCount} moves!`, 'success');
+        return this.planIndex < this.plan.length;
+      }
+      async playAuto() {
+        if (this.isPlaying) return;
+        if (this.rods.C.length === this.numDiscs) this.reset();
+        this.isPlaying = true;
+        document.getElementById('hanoi-play-btn').disabled = true;
+        document.getElementById('hanoi-pause-btn').disabled = false;
+        while (this.isPlaying) {
+          const more = await this.stepAuto();
+          if (!more || !this.isPlaying) break;
+          await sleep(360);
+        }
+        this.pauseAuto();
+      }
+      pauseAuto() {
+        this.isPlaying = false;
+        document.getElementById('hanoi-play-btn').disabled = false;
+        document.getElementById('hanoi-pause-btn').disabled = true;
+      }
+      runDemo() { this.changeDiscs(3); this.playAuto(); }
+    }
+
+    const stackViz = new StackVisualizer();
+    const queueViz = new QueueVisualizer();
+    const sllViz = new LinkedListVisualizer();
+    const hanoiViz = new HanoiVisualizer();
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>
+
