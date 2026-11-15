@@ -348,4 +348,41 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === installModal) installModal.hidden = true;
     });
   }
+
+  /* ------------------------------------------------------------------------
+     8. Creator Profile Modal ("Build by Naveen K")
+     ------------------------------------------------------------------------ */
+  const openProfileBtns = document.querySelectorAll('.open-profile-modal');
+  const profileModal = document.getElementById('creator-profile-modal');
+  const closeProfileBtn = document.getElementById('close-profile-modal');
+
+  openProfileBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (profileModal) profileModal.hidden = false;
+    });
+  });
+
+  if (closeProfileBtn && profileModal) {
+    closeProfileBtn.addEventListener('click', () => {
+      profileModal.hidden = true;
+    });
+    profileModal.addEventListener('click', (e) => {
+      if (e.target === profileModal) profileModal.hidden = true;
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     9. Liquid Metal Button Click Ripple Effect
+     ------------------------------------------------------------------------ */
+  document.querySelectorAll('.btn-liquid-metal').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'lm-ripple';
+      ripple.style.left = `${e.clientX - rect.left}px`;
+      ripple.style.top = `${e.clientY - rect.top}px`;
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
 });

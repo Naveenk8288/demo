@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0f5ad6">
+  <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="DS Demo">
   <meta name="application-name" content="DS Demo">
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=10">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png?v=10">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=10">
+  <link rel="manifest" href="manifest.json?v=10">
   <title>DS Demo — Interactive DSA Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -569,16 +569,362 @@
     .hanoi-disc { height: 26px; border-radius: 13px; z-index: 3; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 0.85rem; margin-bottom: 3px; transition: transform calc(0.3s / var(--speed-mult, 1)) ease; }
     .hanoi-disc.lifted { transform: translateY(-40px) scale(1.05); outline: 2px solid #fff; }
     .hanoi-rod-label { margin-top: 0.65rem; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.95rem; }
+      /* CREATOR PROFILE MODAL */
+    .profile-btn-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--accent-primary, #22d3ee);
+      box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+      flex-shrink: 0;
+    }
+    .creator-corner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.8rem 0.25rem 0.32rem;
+      border-radius: 999px;
+      background: rgba(167, 139, 250, 0.16);
+      border: 1px solid rgba(167, 139, 250, 0.55);
+      color: var(--text-primary, #f8fafc);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .creator-corner-badge:hover {
+      transform: translateY(-1px) scale(1.03);
+      background: rgba(167, 139, 250, 0.28);
+      border-color: var(--accent-primary, #22d3ee);
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.4);
+    }
+    .profile-modal-backdrop {
+      position: fixed; inset: 0; z-index: 2100;
+      background: rgba(3, 7, 20, 0.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.25rem;
+    }
+    .profile-modal-backdrop[hidden] { display: none !important; }
+    .profile-modal-card {
+      position: relative; width: 100%; max-width: 480px;
+      background: linear-gradient(165deg, rgba(14, 22, 54, 0.95), rgba(7, 11, 30, 0.98));
+      border: 1.5px solid rgba(34, 211, 238, 0.55);
+      border-radius: 24px; padding: 2.2rem 1.8rem 1.9rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 35px rgba(45, 140, 255, 0.35);
+      text-align: center;
+    }
+    .profile-modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border-color); background: var(--bg-tertiary);
+      color: var(--text-primary); font-size: 1.1rem; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .profile-avatar-wrapper { margin: 0 auto 1.2rem; width: 154px; height: 154px; }
+    .profile-avatar-img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+      box-shadow: 0 0 28px rgba(34, 211, 238, 0.65), 0 0 50px rgba(45, 140, 255, 0.4);
+    }
+    .profile-tag-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(45, 140, 255, 0.2), rgba(34, 211, 238, 0.2));
+      border: 1px solid var(--accent-primary, #22d3ee);
+      color: var(--accent-primary, #22d3ee);
+      font-size: 0.92rem; font-weight: 800; letter-spacing: 0.04em;
+      text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 999px;
+      margin-bottom: 1.1rem; box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+    }
+    .profile-details-list {
+      display: flex; flex-direction: column; gap: 0.85rem; text-align: left;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border-color); border-radius: 16px;
+      padding: 1.25rem 1.4rem;
+    }
+    .profile-detail-item {
+      display: flex; flex-direction: column; gap: 0.18rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08); padding-bottom: 0.65rem;
+    }
+    .profile-detail-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .profile-label { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .profile-val { font-size: 1.05rem; font-weight: 800; color: var(--text-primary); line-height: 1.35; }
+    .profile-val.highlight-name {
+      color: #ffffff; font-size: 1.2rem;
+      background: linear-gradient(90deg, #ffffff, var(--accent-primary, #22d3ee));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .profile-val.guidance-val { color: var(--accent-orange, #ff7a18); font-size: 1.08rem; }
+
+    /* ==========================================================================
+       OBSIDIAN FROSTED GLASS + 3D AMBIENT ORBS UI (Unified Across All Pages)
+       ========================================================================== */
+    :root[data-theme="dark"] {
+      --bg-primary: #000000;
+      --bg-secondary: rgba(16, 16, 20, 0.56);
+      --bg-tertiary: rgba(255, 255, 255, 0.08);
+      --bg-canvas: rgba(18, 18, 24, 0.52);
+      --text-primary: #ffffff;
+      --text-secondary: #d4d4d8;
+      --text-muted: #a1a1aa;
+      --border-color: rgba(255, 255, 255, 0.18);
+      --accent-primary: #818cf8;
+      --accent-blue: #4f6cff;
+      --accent-secondary: #a855f7;
+      --accent-orange: #f97316;
+      --accent-hover: #6366f1;
+      --info-bg: rgba(79, 108, 255, 0.14);
+      --node-bg: rgba(14, 14, 20, 0.88);
+      --node-border: rgba(255, 255, 255, 0.34);
+      --code-bg: rgba(9, 9, 13, 0.88);
+      --code-highlight: rgba(249, 115, 22, 0.22);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.82), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+
+    :root[data-theme="dark"] body {
+      background-color: #000000;
+      background-image:
+        radial-gradient(circle at 14% 12%, rgba(79, 108, 255, 0.14) 0%, transparent 38%),
+        radial-gradient(circle at 86% 88%, rgba(249, 115, 22, 0.14) 0%, transparent 40%);
+      background-size: 100% 100%, 100% 100%;
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Geometric 6-Arm Starburst Watermark */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 40px;
+      right: -30px;
+      width: 440px;
+      height: 440px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg 16deg, #fff 16deg 44deg, transparent 44deg 76deg,
+        #fff 76deg 104deg, transparent 104deg 136deg, #fff 136deg 164deg,
+        transparent 164deg 196deg, #fff 196deg 224deg, transparent 224deg 256deg,
+        #fff 256deg 284deg, transparent 284deg 316deg, #fff 316deg 344deg,
+        transparent 344deg 360deg
+      );
+      -webkit-mask: radial-gradient(circle, transparent 0 18%, #000 18% 68%, transparent 68%);
+      mask: radial-gradient(circle, transparent 0 18%, #000 18% 68%, transparent 68%);
+    }
+
+    :root[data-theme="light"] body::before {
+      opacity: 0.03;
+      filter: invert(1);
+    }
+
+    header, main {
+      position: relative;
+      z-index: 1;
+    }
+
+    :root[data-theme="dark"] header {
+      background: rgba(8, 8, 10, 0.72);
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .brand {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(95deg, #ffffff 0%, #e4e4e7 55%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: none;
+    }
+
+    .tab-btn {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-weight: 700;
+    }
+
+    .tab-btn:hover {
+      border-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(249, 115, 22, 0.25), rgba(79, 108, 255, 0.24));
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 8px 22px rgba(0, 0, 0, 0.5);
+    }
+
+    .speed-control,
+    .theme-btn {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .demo-header,
+    .controls-panel,
+    .panel {
+      backdrop-filter: blur(24px) saturate(145%);
+      -webkit-backdrop-filter: blur(24px) saturate(145%);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    .demo-header h1 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .panel-title {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+    }
+
+    .btn {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .btn:hover:not(:disabled) {
+      border-color: rgba(255, 255, 255, 0.48);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, rgba(79, 108, 255, 0.42), rgba(168, 85, 247, 0.35));
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 10px 24px rgba(79, 108, 255, 0.25);
+    }
+
+    .btn-demo {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(249, 115, 22, 0.34), rgba(79, 108, 255, 0.24));
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 10px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    /* 3D Glowing Orbs Refracting Through Frosted Smoked-Glass Visualizer Canvas */
+    .workspace-grid {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .workspace-grid::before,
+    .workspace-grid::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .workspace-grid::before {
+      width: 240px;
+      height: 240px;
+      top: -28px;
+      left: 22%;
+      background: radial-gradient(circle at 34% 28%, #93c5fd 0%, #3b82f6 38%, #1d4ed8 74%, #0c1445 100%);
+      box-shadow: 0 0 80px rgba(79, 108, 255, 0.55);
+      opacity: 0.72;
+    }
+
+    .workspace-grid::after {
+      width: 280px;
+      height: 280px;
+      bottom: -36px;
+      left: 16%;
+      background: radial-gradient(circle at 35% 32%, #fef08a 0%, #fb923c 34%, #ea580c 70%, #7c2d12 100%);
+      box-shadow: 0 0 90px rgba(249, 115, 22, 0.52);
+      opacity: 0.74;
+    }
+
+    :root[data-theme="light"] .workspace-grid::before,
+    :root[data-theme="light"] .workspace-grid::after {
+      opacity: 0.22;
+    }
+
+    .viz-canvas,
+    .side-panels {
+      position: relative;
+      z-index: 1;
+    }
+
+    :root[data-theme="dark"] .viz-canvas {
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.08) 0%, rgba(16, 16, 22, 0.56) 45%, rgba(10, 10, 14, 0.74) 100%);
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 28px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    :root[data-theme="dark"] .profile-modal-card {
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.09) 0%, rgba(16, 16, 22, 0.72) 50%, rgba(10, 10, 14, 0.86) 100%);
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 28px;
+      box-shadow: 0 32px 72px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+    }
+
+    .creator-corner-badge {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .profile-val {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    @media (max-width: 720px) {
+      .workspace-grid::before {
+        width: 170px;
+        height: 170px;
+        left: 14%;
+      }
+      .workspace-grid::after {
+        width: 210px;
+        height: 210px;
+        left: 10%;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <span class="brand-badge">DSA LAB</span>
-      <span>TheBitForge</span>
+      <img src="assets/icons/app-icon.png?v=10" alt="DS Demo App Icon" style="width:36px;height:45px;object-fit:contain;border-radius:8px;filter:drop-shadow(0 0 8px rgba(79,108,255,0.6));">
+      <span>DS Demo</span>
     </div>
 
     <nav class="tabs" role="tablist" aria-label="Data Structure Demos">
+      <a class="tab-btn" href="index.html" style="text-decoration:none;">🏠 Home Overview</a>
       <button class="tab-btn active" role="tab" aria-selected="true" id="tab-stack" onclick="switchTab('stack')">1. Stack (LIFO)</button>
       <button class="tab-btn" role="tab" aria-selected="false" id="tab-queue" onclick="switchTab('queue')">2. Queue (FIFO)</button>
       <button class="tab-btn" role="tab" aria-selected="false" id="tab-sll" onclick="switchTab('sll')">3. Singly Linked List</button>
@@ -586,6 +932,7 @@
     </nav>
 
     <div class="global-controls">
+      <button type="button" class="creator-corner-badge open-profile-modal" title="View Naveen K Profile"><img src="assets/profile/naveen-profile.png" alt="My Profile Photo" class="profile-btn-avatar"><span>My profile</span></button>
       <div class="speed-control">
         <label for="speed-slider">Speed:</label>
         <input type="range" id="speed-slider" min="0.5" max="3" step="0.25" value="1" oninput="updateSpeed(this.value)">
@@ -1308,6 +1655,52 @@
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
     }
+  </script>
+  <!-- ========================================================================
+       CREATOR PROFILE MODAL ("Build by Naveen K")
+       ======================================================================== -->
+  <div id="creator-profile-modal" class="profile-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="profile-title" hidden>
+    <div class="profile-modal-card">
+      <button type="button" id="close-profile-modal" class="profile-modal-close" aria-label="Close Profile">✕</button>
+
+      <div class="profile-avatar-wrapper">
+        <img src="assets/profile/naveen-profile.png" alt="Naveena Kanakannanavar Profile Photo" class="profile-avatar-img">
+      </div>
+
+      <div class="profile-tag-pill" id="profile-title">Data Structure mini project</div>
+
+      <div class="profile-details-list">
+        <div class="profile-detail-item">
+          <span class="profile-label">Name</span>
+          <span class="profile-val highlight-name">Naveena Kanakannanavar</span>
+        </div>
+
+        <div class="profile-detail-item">
+          <span class="profile-label">USN</span>
+          <span class="profile-val" style="font-family: monospace; letter-spacing: 0.05em; color: var(--accent-primary, #22d3ee);">1GA25AI030</span>
+        </div>
+
+        <div class="profile-detail-item">
+          <span class="profile-label">Branch</span>
+          <span class="profile-val">Artificial Intelligence and Machine Learning</span>
+        </div>
+
+        <div class="profile-detail-item">
+          <span class="profile-label">Under the guidance of</span>
+          <span class="profile-val guidance-val">Prof. Christlin Shanuja</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pBtns = document.querySelectorAll(".open-profile-modal");
+      const pModal = document.getElementById("creator-profile-modal");
+      const pClose = document.getElementById("close-profile-modal");
+      pBtns.forEach(btn => btn.addEventListener("click", () => { if (pModal) pModal.hidden = false; }));
+      if (pClose && pModal) pClose.addEventListener("click", () => { pModal.hidden = true; });
+      if (pModal) pModal.addEventListener("click", (e) => { if (e.target === pModal) pModal.hidden = true; });
+    });
   </script>
 </body>
 </html>

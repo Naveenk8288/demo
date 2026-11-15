@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ds-demo-app-v2';
+const CACHE_NAME = 'ds-demo-app-v10';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -9,13 +9,14 @@ const PRECACHE_ASSETS = [
   '/linkedlist.html',
   '/hanoi.html',
   '/dsa-lab.html',
-  '/manifest.json',
-  '/assets/icons/app-icon.png',
-  '/assets/icons/icon-192.png',
-  '/assets/icons/icon-512.png',
-  '/assets/icons/apple-touch-icon.png',
-  '/assets/icons/favicon-64.png',
-  '/assets/icons/favicon-32.png'
+  '/manifest.json?v=10',
+  '/assets/profile/naveen-profile.png',
+  '/assets/icons/app-icon.png?v=10',
+  '/assets/icons/icon-192.png?v=10',
+  '/assets/icons/icon-512.png?v=10',
+  '/assets/icons/apple-touch-icon.png?v=10',
+  '/assets/icons/favicon-64.png?v=10',
+  '/assets/icons/favicon-32.png?v=10'
 ];
 
 self.addEventListener('install', (event) => {
@@ -64,4 +65,3 @@ self.addEventListener('fetch', (event) => {
       )
   );
 });
-

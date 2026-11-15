@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0f5ad6">
+  <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="DS Demo">
@@ -11,10 +11,10 @@
   <meta name="mobile-web-app-capable" content="yes">
   <title>DS Demo — Data Structures Visualizer</title>
   <meta name="description" content="Classroom educational overview of Stack, Queue, Singly Linked List, and Tower of Hanoi with visual diagrams, real-life examples, types, worked steps, code, and complexities.">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=10">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png?v=10">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=10">
+  <link rel="manifest" href="manifest.json?v=10">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#home" class="brand-logo" aria-label="DS Demo Home">
-        <img src="assets/icons/app-icon.png" alt="DS Demo App Icon" class="brand-app-icon">
+        <img src="assets/icons/app-icon.png?v=10" alt="DS Demo App Icon" class="brand-app-icon">
         <span class="brand-text">DS Demo</span>
       </a>
 
@@ -43,6 +43,10 @@
       </nav>
 
       <div class="nav-actions">
+        <button type="button" class="creator-corner-badge open-profile-modal" title="View Naveen K's Profile" aria-label="View Naveen K's Profile">
+          <img src="assets/profile/naveen-profile.png" alt="My Profile Photo" class="profile-btn-avatar">
+          <span>My profile</span>
+        </button>
         <button id="install-app-btn" class="install-app-btn" aria-label="Install DS Demo App on Android, iOS, or macOS">
           <span>📲</span>
           <span class="install-btn-label">Install App</span>
@@ -74,14 +78,27 @@
               Stack, Queue, Singly Linked List and Tower of Hanoi, explained with real-life analogies, animated diagrams, step-by-step worked examples, and code.
             </p>
             <div class="hero-cta-group">
-              <a href="#stack" class="btn btn-demo">Start Learning ↓</a>
-              <a href="stack.html" class="btn btn-outline">▶ Launch Interactive Lab</a>
-              <button type="button" class="btn btn-outline open-install-modal">📲 Get App (Android / iOS / Mac)</button>
+              <a href="#stack" class="btn btn-demo">Start Learning &darr;</a>
+              <a href="stack.html" class="btn btn-outline">&#9654; Launch Interactive Lab</a>
+              <button type="button" class="btn btn-outline open-install-modal">&#128242; Get App (Android / iOS / Mac)</button>
             </div>
           </div>
 
-          <!-- Animated SVG Visual of Blocks Pushed & Popped -->
-          <div class="hero-visual-card" aria-label="Animated Data Structure Visual">
+          <!-- Animated Frosted Glass Stage with 3D Glowing Orbs, Coins & Rings -->
+          <div class="hero-glass-stage">
+            <div class="orb-3d orb-3d-blue" aria-hidden="true"></div>
+            <div class="orb-3d orb-3d-orange" aria-hidden="true"></div>
+            <div class="disc-3d disc-3d-blue" aria-hidden="true"></div>
+            <div class="ring-3d ring-3d-top" aria-hidden="true"></div>
+            <div class="ring-3d ring-3d-bottom" aria-hidden="true"></div>
+            <div class="disc-3d disc-3d-coral" aria-hidden="true"></div>
+
+            <div class="hero-visual-card" aria-label="Animated Data Structure Visual">
+              <div class="frosted-chrome">
+                <div class="frosted-line"></div>
+                <div class="frosted-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              </div>
+              <div class="frosted-inner-well">
             <svg class="hero-svg-anim" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Stack Bucket on Left -->
               <text x="85" y="25" fill="#22d3ee" font-size="13" font-weight="800" text-anchor="middle">STACK (LIFO)</text>
@@ -100,11 +117,11 @@
               <!-- Linked Nodes & Hanoi on Right -->
               <text x="295" y="25" fill="#a78bfa" font-size="13" font-weight="800" text-anchor="middle">NODES &amp; RECURSION</text>
               <g class="anim-push-pop-2">
-                <rect x="215" y="55" width="60" height="34" rx="6" fill="#0d132a" stroke="#22d3ee" stroke-width="2.5"/>
+                <rect x="215" y="55" width="60" height="34" rx="6" fill="#09090d" stroke="#22d3ee" stroke-width="2.5"/>
                 <text x="245" y="77" fill="#f8fafc" font-size="13" font-weight="800" text-anchor="middle">A | •</text>
                 <path d="M278 72 H305" stroke="#22d3ee" stroke-width="2.5"/>
                 <polygon points="305,68 313,72 305,76" fill="#22d3ee"/>
-                <rect x="315" y="55" width="60" height="34" rx="6" fill="#0d132a" stroke="#a78bfa" stroke-width="2.5"/>
+                <rect x="315" y="55" width="60" height="34" rx="6" fill="#09090d" stroke="#a78bfa" stroke-width="2.5"/>
                 <text x="345" y="77" fill="#f8fafc" font-size="13" font-weight="800" text-anchor="middle">B | /</text>
               </g>
 
@@ -118,7 +135,10 @@
                 <rect x="324" y="190" width="32" height="16" rx="8" fill="#ef4444"/>
               </g>
             </svg>
-            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Live Visual Primitives: LIFO • FIFO • Pointers • Recursion</span>
+              </div>
+              <div class="frosted-credit-row">DS Visualizer 2026 &mdash; Interactive Edition</div>
+              <div class="frosted-pill-caption">Live Visual Primitives: LIFO &bull; FIFO &bull; Pointers &bull; Recursion</div>
+            </div>
           </div>
         </div>
 
@@ -680,7 +700,7 @@
                 <line x1="64" y1="103" x2="86" y2="103" stroke="#22d3ee" stroke-width="3"/>
 
                 <!-- Node 1 -->
-                <rect x="88" y="80" width="76" height="46" rx="8" fill="#0d132a" stroke="#22d3ee" stroke-width="2.5"/>
+                <rect x="88" y="80" width="76" height="46" rx="8" fill="#09090d" stroke="#22d3ee" stroke-width="2.5"/>
                 <line x1="134" y1="80" x2="134" y2="126" stroke="#22d3ee" stroke-width="2"/>
                 <text x="111" y="108" fill="#fff" font-size="14" font-weight="800" text-anchor="middle">10</text>
                 <text x="149" y="108" fill="#22d3ee" font-size="13" font-weight="800" text-anchor="middle">•</text>
@@ -689,7 +709,7 @@
                 <line x1="164" y1="103" x2="190" y2="103" stroke="#22d3ee" stroke-width="3"/>
 
                 <!-- Node 2 -->
-                <rect x="192" y="80" width="76" height="46" rx="8" fill="#0d132a" stroke="#22d3ee" stroke-width="2.5"/>
+                <rect x="192" y="80" width="76" height="46" rx="8" fill="#09090d" stroke="#22d3ee" stroke-width="2.5"/>
                 <line x1="238" y1="80" x2="238" y2="126" stroke="#22d3ee" stroke-width="2"/>
                 <text x="215" y="108" fill="#fff" font-size="14" font-weight="800" text-anchor="middle">20</text>
                 <text x="253" y="108" fill="#22d3ee" font-size="13" font-weight="800" text-anchor="middle">•</text>
@@ -1097,7 +1117,7 @@ tower_of_hanoi(<span class="num">3</span>, <span class="str">'A'</span>, <span c
       <div class="footer-grid">
         <div>
           <div class="brand-logo" style="margin-bottom: 0.6rem;">
-            <img src="assets/icons/app-icon.png" alt="DS Demo App Icon" class="brand-app-icon">
+            <img src="assets/icons/app-icon.png?v=10" alt="DS Demo App Icon" class="brand-app-icon">
             <span class="brand-text">DS Demo</span>
           </div>
           <p style="color: var(--text-secondary); font-size: 0.95rem;">
@@ -1143,10 +1163,10 @@ tower_of_hanoi(<span class="num">3</span>, <span class="str">'A'</span>, <span c
       <button type="button" id="close-install-modal" class="install-modal-close" aria-label="Close Install Dialog">✕</button>
 
       <div class="install-modal-header">
-        <img src="assets/icons/app-icon.png" alt="DS Demo App Icon" class="install-modal-icon">
+        <img src="assets/icons/app-icon.png?v=10" alt="DS Demo App Icon" class="install-modal-icon">
         <div>
           <h3 id="install-modal-title">Install DS Demo App</h3>
-          <p class="install-modal-sub">Full-screen native-style experience with offline support &amp; custom DS Demo icon</p>
+          <p class="install-modal-sub">Full-screen native-style experience with offline support</p>
         </div>
       </div>
 
@@ -1184,6 +1204,43 @@ tower_of_hanoi(<span class="num">3</span>, <span class="str">'A'</span>, <span c
           <li><strong>In Safari on Mac (macOS Sonoma+):</strong> Click <strong>File → Add to Dock...</strong> from the top menu bar, then click <strong>Add</strong>.</li>
           <li>Launch <strong>DS Demo</strong> anytime directly from your macOS Dock, Launchpad, or Spotlight!</li>
         </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CREATOR PROFILE MODAL ("Build by Naveen K")
+       ======================================================================== -->
+  <div id="creator-profile-modal" class="profile-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="profile-title" hidden>
+    <div class="profile-modal-card">
+      <button type="button" id="close-profile-modal" class="profile-modal-close" aria-label="Close Profile">✕</button>
+
+      <div class="profile-avatar-wrapper">
+        <img src="assets/profile/naveen-profile.png" alt="Naveena Kanakannanavar Profile Photo" class="profile-avatar-img">
+      </div>
+
+      <div class="profile-tag-pill" id="profile-title">Data Structure mini project</div>
+
+      <div class="profile-details-list">
+        <div class="profile-detail-item">
+          <span class="profile-label">Name</span>
+          <span class="profile-val highlight-name">Naveena Kanakannanavar</span>
+        </div>
+
+        <div class="profile-detail-item">
+          <span class="profile-label">USN</span>
+          <span class="profile-val" style="font-family: monospace; letter-spacing: 0.05em; color: var(--cyan);">1GA25AI030</span>
+        </div>
+
+        <div class="profile-detail-item">
+          <span class="profile-label">Branch</span>
+          <span class="profile-val">Artificial Intelligence and Machine Learning</span>
+        </div>
+
+        <div class="profile-detail-item">
+          <span class="profile-label">Under the guidance of</span>
+          <span class="profile-val guidance-val">Prof. Christlin Shanuja</span>
+        </div>
       </div>
     </div>
   </div>
